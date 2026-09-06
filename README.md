@@ -15,6 +15,7 @@ classDiagram
         -int age
         +Patient()
         +viewAll()
+        +getAge()
     }
 
     class Doctor {
@@ -28,27 +29,35 @@ classDiagram
         -string patientName
         -string doctorName
         -string date
-        -string priority
+        -int priority
         +Appointment()
         +display()
+        +getPriority()
+        +operator<()
     }
 
     class System {
         -vector~Patient~ patients
         -vector~Doctor~ doctors
         -vector~Appointment~ appointments
+        -WaitingRoom room
         +addPatient()
         +addDoctor()
         +addAppointment()
         +viewPatients()
         +viewDoctors()
-        +viewAppointments()
+        +viewWaitingRoom()
+        +callNextPatient()
+        +searchById()
+        +sortPatients()
+        +deletePatients()
     }
 
     class WaitingRoom {
-    +viewTheNext()
-    +callTheNext()
-    +addAppointment()
+        -vector~Appointment~ appointment
+        +viewTheNext()
+        +callTheNext()
+        +addAppointment()
     }
 
     Person <|-- Patient
