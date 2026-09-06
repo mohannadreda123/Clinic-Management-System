@@ -9,7 +9,5 @@ public:
 
 	int doctor();
 
-	int appointment();
-
 	int waiting();
 };

@@ -8,4 +8,6 @@ private:
 public:
 	Patient();
 	void view() override;
+
+	int getAge();
 };

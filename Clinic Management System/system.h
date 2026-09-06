@@ -3,23 +3,32 @@
 #include <vector>
 #include "patient.h"
 #include "doctor.h"
-#include "Appointment.h"
+#include "waitingRoom.h"
+#include "dataStructures.h"
+#include "searchingAlgorithm.h"
+#include "sortingAlgorithm.h"
 using namespace std;
 class System {
 private:
 	vector<Patient>patients;
 	vector<Doctor>doctors;
-	vector<Appointment>appointments;
+	WaitingRoom room;
 public:
-	int start();
-	int patient();
-	int doctor();
-	int appointment();
-	int waiting();
+	// Add Functions
 	void addPatient();
 	void addDoctor();
 	void addAppointment();
+
+	// Display Functions
 	void viewPatients();
 	void viewDoctors();
-	void viewAppointments();
+	void viewWaitingRoom();
+	void nextPatient();
+
+
+	void searchById(int choice);
+
+	void sortPatients();
+
+	void deletePatient();
 };

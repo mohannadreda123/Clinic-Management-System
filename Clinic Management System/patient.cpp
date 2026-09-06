@@ -13,3 +13,5 @@ void Patient::view() {
 	cout << "Age : " << age;
 	cout << "\n";
 }
+
+int Patient::getAge() { return age; }

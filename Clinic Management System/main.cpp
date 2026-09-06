@@ -21,6 +21,22 @@ int main()
 				manager.viewPatients();
 				break;
 			}
+			case 3: {
+				manager.searchById(choice);
+				break;
+			}
+			case 4: {
+				manager.sortPatients();
+				break;
+			}
+			case 5: {
+				manager.deletePatient();
+				break;
+			}
+			//case 6: {
+			//	manager.sortPatients();
+			//	break;
+			//}
 			}
 			break;
 		}
@@ -34,17 +50,25 @@ int main()
 				manager.viewDoctors();
 				break;
 			}
+			case 3: {
+				manager.searchById(choice);
+				break;
+			}
 			}
 			break;
 		}
 		case 3: {
-			switch (ui.appointment()) {
+			switch (ui.waiting()) {
 			case 1: {
 				manager.addAppointment();
 				break;
 			}
 			case 2: {
-				manager.viewAppointments();
+				manager.viewWaitingRoom();
+				break;
+			}
+			case 3: {
+				manager.nextPatient();
 				break;
 			}
 			}

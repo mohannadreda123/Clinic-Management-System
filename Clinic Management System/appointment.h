@@ -3,9 +3,11 @@
 using namespace std;
 class Appointment {
 private:
-	string doctorName, patientName;
-	string date;
+	string doctorName, patientName, date;
+	int priority;
 public:
 	Appointment();
 	void display();
+	int getPriority();
+	bool operator<(Appointment appointment);
 };
