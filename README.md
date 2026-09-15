@@ -4,25 +4,33 @@ classDiagram
     class Person {
         #string name
         #int id
-        #string phone
         +Person()
-        +viewAll()
+        +display()
         +getId()
         +getName()
     }
 
     class Patient {
-        -int age
+        -string age
+        -string phone
+        -History history
+        -static int ID
         +Patient()
-        +viewAll()
+        +display()
+        +getName()
         +getAge()
+        +addVisitToHistory()
+        +viewHistory()
     }
 
     class Doctor {
+        -static int ID
         -string specialisation
-        -double consultantFee
+        -string consultantFee
         +Doctor()
-        +viewAll()
+        +display()
+        +getSpecialization()
+        +getFee()
     }
 
     class Appointment {
@@ -39,25 +47,55 @@ classDiagram
     class System {
         -vector~Patient~ patients
         -vector~Doctor~ doctors
-        -vector~Appointment~ appointments
         -WaitingRoom room
         +addPatient()
-        +addDoctor()
-        +addAppointment()
         +viewPatients()
-        +viewDoctors()
-        +viewWaitingRoom()
-        +callNextPatient()
-        +searchById()
+        +search_PatientBy_Id()
         +sortPatients()
         +deletePatients()
+        +addDoctor()
+        +viewDoctors()
+        +search_Doctor_By_Id()
+        +addAppointment()
+        +viewWaitingRoom()
+        +callNextPatient()
     }
 
     class WaitingRoom {
-        -vector~Appointment~ appointment
-        +viewTheNext()
-        +callTheNext()
-        +addAppointment()
+        -priorityQueue waiting
+	    +add_To_Waiting_Room()
+        +view_Who_Is_Waiting()
+	    +call_Next_Patient()
+        +isEmpty()
+	    +remain()
+    }
+
+    class History {
+        -Node head
+	    -totalFee()
+	    +addVisit()
+	    +viewVisits()
+	    +viewFees()
+    }
+
+    class Visit {
+        -string date
+        -string doctorName
+        -string illness
+	    +Visit()
+	    +view()
+	    +calculateFee() = 0
+    }
+    class NormalVisit {
+        -double fee
+	    +NormalVisit()
+	    +calculateFee()
+    }
+
+    class EmergencyVisit {
+	    -double fee
+	    +EmergencyVisit()
+	    +calculateFee()
     }
 
     Person <|-- Patient
@@ -68,4 +106,8 @@ classDiagram
     Patient "0..*" -- "0..*" Doctor
     Patient "1" *-- "0..*" Appointment
     WaitingRoom "1" o-- "0..*" Appointment
+    Visit <|-- NormalVisit
+    Visit <|-- EmergencyVisit
+    History o-- "0..*" Visit
+    Patient "1" *-- "1" History
 ```
