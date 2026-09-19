@@ -8,13 +8,14 @@
 using namespace std;
 class Patient : public Person {
 private:
-	string phone, age;
+	string phone;
+	int age;
 	static int ID;
 	History history;
 public:
 	Patient();
 	void display() override;
-    string getAge();
+    int getAge();
 	string getPhone();
 	void addVisitToHistory(Visit* visit);
 	void viewHistory();

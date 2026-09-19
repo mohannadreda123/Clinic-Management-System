@@ -23,18 +23,18 @@ Patient::Patient() : Person(ID++) {
 		if (IsValid::isValidAge(age)) break;
 		else cout << "\n*{ Enter A valid Age! }*\n";
 	}
-	this->age = age;
+	this->age = stoi(age);
 	cout << "\n";
 }
 
 void Patient::display() {
 	Person::display();
 	cout << age;
-	NiceView::spaces(age);
+	NiceView::spaces(to_string(age));
 	cout << phone << "\n\n";
 }
 
-string Patient::getAge() { return age; }
+int Patient::getAge() { return age; }
 
 string Patient::getPhone() { return phone; }
 
