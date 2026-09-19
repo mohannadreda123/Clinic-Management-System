@@ -5,8 +5,8 @@ PriorityQueue::PriorityQueue() { head = nullptr; }
 bool PriorityQueue::patientExist(Appointment* app) {
 	App* temp = head;
 	while (temp != nullptr) {
-		if (app->getPatientId() == temp->app->getPatientId());
-		return true;
+		if (app->getPatientId() == temp->app->getPatientId()) return true;
+		temp = temp->next;
 	}
 	return false;
 }
@@ -14,8 +14,8 @@ bool PriorityQueue::patientExist(Appointment* app) {
 bool PriorityQueue::doctorExist(Appointment* app) {
 	App* temp = head;
 	while (temp != nullptr) {
-		if (app->getDoctorId() == temp->app->getDoctorId());
-		return true;
+		if (app->getDoctorId() == temp->app->getDoctorId()) return true;
+		temp = temp->next;
 	}
 	return false;
 }
@@ -23,19 +23,13 @@ bool PriorityQueue::doctorExist(Appointment* app) {
 bool PriorityQueue::dateExist(Appointment* app) {
 	App* temp = head;
 	while (temp != nullptr) {
-		if (app->getDate() == temp->app->getDate());
-		return true;
+		if (app->getDate() == temp->app->getDate()) return true;
+		temp = temp->next;
 	}
 	return false;
 }
 
 bool PriorityQueue::push(Appointment* app) {
-	App* newNode = new App(app);
-	if (isEmpty()) {
-		newNode->next = nullptr;
-		head = newNode;
-		return false;
-	}
 	if (patientExist(app) && doctorExist(app) && dateExist(app)) {
 		cout << "*{ This Appointment Already Added! }*\n\n";
 		return true;
@@ -43,6 +37,12 @@ bool PriorityQueue::push(Appointment* app) {
 	if (doctorExist(app) && dateExist(app)) {
 		cout << "*{ This Date is Already Taken! }*\n\n";
 		return true;
+	}
+	App* newNode = new App(app);
+	if (isEmpty()) {
+		newNode->next = nullptr;
+		head = newNode;
+		return false;
 	}
 	if (app->getPriority() == "1") {
 		App* temp = head;

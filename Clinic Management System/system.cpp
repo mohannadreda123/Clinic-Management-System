@@ -54,7 +54,7 @@ void System::deletePatient() {
 		if (cin.peek() == '\n') cin.ignore();
 		getline(cin, id);
 		if (IsValid::isValidId(id)) break;
-		else cout << "\n*{ Enter A valid ID! }*\n";
+		else cout << "\n*{ Enter A valid ID! }*\n\n";
 	}
 	Sort::selectionByID(patients);
 	int index = Search::binarySearch(patients, stoi(id));
@@ -77,7 +77,7 @@ void System::search_PatientBy_Id() {
 		if (cin.peek() == '\n') cin.ignore();
 		getline(cin, id);
 		if (IsValid::isValidId(id)) break;
-		else cout << "\n*{ Enter A valid ID! }*\n";
+		else cout << "\n*{ Enter A valid ID! }*\n\n";
 	}
 	Sort::selectionByID(patients);
 	int index = Search::binarySearch(patients, stoi(id));
@@ -148,6 +148,7 @@ void System::search_Doctor_By_Id() {
 		if (cin.peek() == '\n') cin.ignore();
 		getline(cin, id);
 		if (IsValid::isValidId(id)) break;
+		else cout << "\n*{ Enter A valid ID! }*\n\n";
 	}
 	Sort::selectionByID(doctors);
 	int index = Search::binarySearch(doctors, stoi(id));
@@ -184,7 +185,9 @@ void System::addAppointment() {
 	if (!room.add_To_Waiting_Room(appointment)) {
 		cout << "[OK] " << patients.at(pIndex).getName() << " added as ";
 		cout << (appointment->getPriority() == "1" ? "Emergency\n\n" : "Normal\n\n");
+		return;
 	}
+	delete appointment;
 }
 void System::viewWaitingRoom() {
 	if (room.view_Who_Is_Waiting()) {

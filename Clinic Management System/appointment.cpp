@@ -8,6 +8,7 @@ Appointment::Appointment() {
 		if (cin.peek() == '\n') cin.ignore();
 		getline(cin, patientId);
 		if (IsValid::isValidId(patientId)) break;
+		else cout << "\n*{ Enter A valid ID! }*\n\n";
 	}
 	this->patientId = stoi(patientId);
 	while (true) {
@@ -15,19 +16,21 @@ Appointment::Appointment() {
 		if (cin.peek() == '\n') cin.ignore();
 		getline(cin, doctorId);
 		if (IsValid::isValidId(doctorId)) break;
+		else cout << "\n*{ Enter A valid ID! }*\n\n";
 	}
 	this->doctorId = stoi(doctorId);
-
 	cout << "\nVisit Date (YYYY-MM-DD) : ";
 	if (cin.peek() == '\n') cin.ignore();
 	getline(cin, date);
 	this->date = date;
-	while (priority != "1" && priority != "2") {
+	while (true) {
 		cout << "\nCase type : (1) Emergency (2) Normal : ";
 		if (cin.peek() == '\n') cin.ignore();
 		getline(cin, priority);
-		this->priority = priority;
+		if (priority == "1" || priority == "2") break;
+		else cout << "\n*{ Enter A valid Choice! }*\n";
 	}
+	this->priority = priority;
 	cout << "\n\n";
 }
 
@@ -42,9 +45,6 @@ void Appointment::display() {
 	else if (priority == "1") cout << "Emergency";
 	cout << "\n\n";
 }
-
-bool Appointment::operator>(Appointment appointment)
-{ return this->priority > appointment.priority; }
 
 int Appointment::getPatientId() { return patientId; }
 int Appointment::getDoctorId() { return doctorId; }

@@ -7,6 +7,7 @@ struct Node {
 	Visit* visit;
 	Node* next;
 	Node(Visit* v) : visit(v), next(nullptr) {}
+	~Node() { delete visit; };
 };
 
 class History {
