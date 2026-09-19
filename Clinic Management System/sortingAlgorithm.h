@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 #include "patient.h"
 #include "doctor.h"
 using namespace std;

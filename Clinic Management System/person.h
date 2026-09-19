@@ -1,13 +1,15 @@
 #pragma once
 #include <iostream>
+#include <string>
+#include "niceView.h"
 using namespace std;
 class Person {
 protected:
-	string name, phone;
+	string name;
 	int id;
 public:
-	Person();
-	virtual void view();
+	Person(int id);
+	virtual void display();
 	string getName();
 	int getID();
 };

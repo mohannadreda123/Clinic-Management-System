@@ -1,23 +1,13 @@
 #include "person.h"
 
-Person::Person() {
-	string name, phone;
-	int id;
-	cout << "ID : ";
-	cin >> id;
-	this->id = id;
-	cout << "Name : ";
-	cin >> name;
-	this->name = name;
-	cout << "Phone : ";
-	cin >> phone;
-	this->phone = phone;
-}
+Person::Person(int id)
+	: id(id) {}
 
-void Person::view() {
-	cout << "ID : " << id << "\n";
-	cout << "Name : " << name << "\n";
-	cout << "Phone : " << phone << "\n";
+void Person::display() {
+	cout << id;
+	NiceView::spaces(id);
+	cout << name;
+	NiceView::spaces(name);
 }
 
 string Person::getName() { return name; }

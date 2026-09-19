@@ -3,11 +3,11 @@
 using namespace std;
 class UI {
 public:
-	int start();
+	string start();
 
-	int patient();
+	string patient();
 
-	int doctor();
+	string doctor();
 
-	int waiting();
+	string waiting();
 };

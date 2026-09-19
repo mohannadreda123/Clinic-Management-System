@@ -1,10 +1,14 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 #include "patient.h"
 #include "doctor.h"
 #include "waitingRoom.h"
-#include "dataStructures.h"
+#include "normalVisit.h"
+#include "visitHistory.h"
+#include "emergencyVisit.h"
+#include "priorityQueue.h"
 #include "searchingAlgorithm.h"
 #include "sortingAlgorithm.h"
 using namespace std;
@@ -14,21 +18,22 @@ private:
 	vector<Doctor>doctors;
 	WaitingRoom room;
 public:
-	// Add Functions
+	// Patient Functions
 	void addPatient();
-	void addDoctor();
-	void addAppointment();
-
-	// Display Functions
 	void viewPatients();
-	void viewDoctors();
-	void viewWaitingRoom();
-	void nextPatient();
-
-
-	void searchById(int choice);
-
+	Appointment* addToHistory();
+	void viewPatientHistory();
+	void search_PatientBy_Id();
 	void sortPatients();
-
 	void deletePatient();
+
+	// Doctor Functions
+	void addDoctor();
+	void viewDoctors();
+	void search_Doctor_By_Id();
+
+	// Waiting Room Functions
+	void addAppointment();
+	void viewWaitingRoom();
+	void callNextPatient();
 };

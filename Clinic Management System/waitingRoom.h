@@ -1,13 +1,16 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include "appointment.h"
-#include "dataStructures.h"
+#include "priorityQueue.h"
 using namespace std;
 class WaitingRoom {
 private:
-	priorityQueue appointments;
+	PriorityQueue waiting;
 public:
-	void add_To_Waiting_Room(Appointment appointment);
+	bool add_To_Waiting_Room(Appointment* appointment);
 	bool view_Who_Is_Waiting();
-	bool call_Next_Patient();
+	Appointment* call_Next_Patient();
+	bool isEmpty();
+	int remain();
 };

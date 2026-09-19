@@ -1,21 +1,18 @@
 #include "waitingRoom.h"
 
-void WaitingRoom::add_To_Waiting_Room(Appointment appointment) {
-	appointments.push(appointment);
-}
+bool WaitingRoom::add_To_Waiting_Room(Appointment* appointment) 
+{ return waiting.push(appointment); }
 bool WaitingRoom::view_Who_Is_Waiting() {
-	if (!appointments.isEmpty()) {
-		appointments.display();
-		return true;
-	}
-	return false;
+	if (waiting.isEmpty()) { return false; }
+	cout << "#  \t\t\tPATIENT \t\tCASE\n";
+	cout << "-  \t\t\t------- \t\t----\n";
+	waiting.display();
+	return true;
 }
-bool WaitingRoom::call_Next_Patient() {
-	if (!appointments.isEmpty()) {
-		cout << ">>> NOW CALLING: \n";
-		appointments.top().display();
-		appointments.pop();
-		return true;
-	}
-	return false;
+Appointment* WaitingRoom::call_Next_Patient() {
+	Appointment* app = waiting.top();
+	waiting.pop();
+	return app;
 }
+bool WaitingRoom::isEmpty() { return waiting.isEmpty(); }
+int WaitingRoom::remain() { return waiting.Size(); }

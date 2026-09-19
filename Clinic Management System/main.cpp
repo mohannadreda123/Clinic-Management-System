@@ -2,79 +2,47 @@
 #include "system.h"
 #include "UI.h"
 using namespace std;
-
 int main()
 {
 	UI ui;
 	System manager;
-	int choice;
+	string choice;
 	do {
 		choice = ui.start();
-		switch (choice) {
-		case 1: {
-			switch (ui.patient()) {
-			case 1: {
-				manager.addPatient();
-				break;
-			}
-			case 2: {
-				manager.viewPatients();
-				break;
-			}
-			case 3: {
-				manager.searchById(choice);
-				break;
-			}
-			case 4: {
-				manager.sortPatients();
-				break;
-			}
-			case 5: {
-				manager.deletePatient();
-				break;
-			}
-			//case 6: {
-			//	manager.sortPatients();
-			//	break;
-			//}
-			}
-			break;
+		if (choice == "1") {
+			string Pchoice;
+			do {
+				Pchoice = ui.patient();
+				if (Pchoice == "1") manager.addPatient();
+				else if (Pchoice == "2") manager.viewPatients();
+				else if (Pchoice == "3") manager.search_PatientBy_Id();
+				else if (Pchoice == "4") manager.sortPatients();
+				else if (Pchoice == "5") manager.deletePatient();
+				else if (Pchoice == "6") manager.viewPatientHistory();
+				else if (Pchoice != "0") cout << "Invalid Choise!\n\n";
+			} while (Pchoice != "0");
 		}
-		case 2: {
-			switch (ui.doctor()) {
-			case 1: {
-				manager.addDoctor();
-				break;
-			}
-			case 2: {
-				manager.viewDoctors();
-				break;
-			}
-			case 3: {
-				manager.searchById(choice);
-				break;
-			}
-			}
-			break;
+		else if (choice == "2") {
+			string Dchoice;
+			do {
+				Dchoice = ui.doctor();
+				if (Dchoice == "1") manager.addDoctor();
+				else if (Dchoice == "2") manager.viewDoctors();
+				else if (Dchoice == "3") manager.search_Doctor_By_Id();
+				else if (Dchoice != "0") cout << "Invalid Choise!\n\n";
+			} while (Dchoice != "0");
 		}
-		case 3: {
-			switch (ui.waiting()) {
-			case 1: {
-				manager.addAppointment();
-				break;
-			}
-			case 2: {
-				manager.viewWaitingRoom();
-				break;
-			}
-			case 3: {
-				manager.nextPatient();
-				break;
-			}
-			}
-			break;
+		else if (choice == "3") {
+			string Wchoice;
+			do {
+				Wchoice = ui.waiting();
+				if (Wchoice == "1") manager.addAppointment();
+				else if (Wchoice == "2") manager.viewWaitingRoom();
+				else if (Wchoice == "3") manager.callNextPatient();
+				else if (Wchoice != "0") cout << "Invalid Choise!\n\n";
+			} while (Wchoice != "0");
 		}
-		}
-	} while (choice != 0);
+		else if (choice != "0") { cout << "Invalid Choise!\n\n"; }
+	} while (choice != "0");
 	return 0;
 }
