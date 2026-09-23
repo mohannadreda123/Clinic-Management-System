@@ -2,7 +2,7 @@
 
 Appointment::Appointment() {
 	string doctorId, patientId;
-	string priority, date, diagnosis;
+	string priority, date, time;
 	while (true) {
 		cout << "Patient ID : ";
 		if (cin.peek() == '\n') cin.ignore();
@@ -19,10 +19,14 @@ Appointment::Appointment() {
 		else cout << "\n*{ Enter A valid ID! }*\n\n";
 	}
 	this->doctorId = stoi(doctorId);
-	cout << "\nVisit Date (YYYY-MM-DD) : ";
+	cout << "\nVisit Date (DD-MM-YYYY) : ";
 	if (cin.peek() == '\n') cin.ignore();
 	getline(cin, date);
 	this->date = date;
+	cout << "\nVisit Time (HH:MM) PM : ";
+	if (cin.peek() == '\n') cin.ignore();
+	getline(cin, time);
+	this->time = time;
 	while (true) {
 		cout << "\nCase type : (1) Emergency (2) Normal : ";
 		if (cin.peek() == '\n') cin.ignore();
@@ -52,3 +56,4 @@ string Appointment::getPriority() { return priority; }
 string Appointment::getDate() { return date; }
 string Appointment::getIllness() { return illness; }
 string Appointment::getPatientName() { return patientName; }
+string Appointment::getTime() { return time; }

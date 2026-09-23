@@ -21,6 +21,7 @@ public:
 	bool patientExist(Appointment* app);
 	bool doctorExist(Appointment* app);
 	bool dateExist(Appointment* app);
+	bool timeExist(Appointment* app);
 	bool push(Appointment* app);
 	bool pop();
 	bool isEmpty();

@@ -8,7 +8,7 @@ using namespace std;
 class Appointment {
 private:
 	int doctorId, patientId;
-	string date, illness, patientName, priority;
+	string date, illness, patientName, priority, time;
 public:
 	Appointment();
 	void setPatientName(string name);
@@ -19,6 +19,6 @@ public:
 	string getPatientName();
 	int getDoctorId();
 	string getDate();
+	string getTime();
 	string getIllness();
-	bool operator>(Appointment appointment);
 };

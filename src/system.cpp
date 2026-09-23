@@ -96,10 +96,12 @@ Appointment* System::addToHistory() {
 	int pIndex = Search::binarySearch(patients, app->getPatientId());
 	Sort::selectionByID(doctors);
 	int dIndex = Search::binarySearch(doctors, app->getDoctorId());
-	Visit* v = nullptr;
-	if (app->getPriority() == "1") v = new EmergencyVisit(app->getDate(), doctors[dIndex].getName(), app->getIllness(), stof(doctors[dIndex].getFee()));
-	else v = new NormalVisit(app->getDate(), doctors[dIndex].getName(), app->getIllness(), stof(doctors[dIndex].getFee()));
-	patients.at(pIndex).addVisitToHistory(v);
+	if (pIndex != -1 && dIndex != -1) {
+		Visit* v = nullptr;
+		if (app->getPriority() == "1") v = new EmergencyVisit(app->getDate(), doctors[dIndex].getName(), app->getIllness(), stof(doctors[dIndex].getFee()));
+		else v = new NormalVisit(app->getDate(), doctors[dIndex].getName(), app->getIllness(), stof(doctors[dIndex].getFee()));
+		patients.at(pIndex).addVisitToHistory(v);
+	}
 	return app;
 }
 void System::viewPatientHistory() {
@@ -121,7 +123,7 @@ void System::viewPatientHistory() {
 	else cout << "*{ No Patient with ID " << id << " }*\n\n";
 }
 
-// Doctor Function
+// Doctor Functions
 void System::addDoctor() {
 	Doctor doctor;
 	doctors.push_back(doctor);
@@ -203,17 +205,21 @@ void System::callNextPatient() {
 		return;
 	}
 	Appointment* app = addToHistory();
-	Sort::selectionByID(patients);
 	int pIndex = Search::binarySearch(patients, app->getPatientId());
+	int dIndex = Search::binarySearch(doctors, app->getDoctorId());
+	if (pIndex == -1 || dIndex == -1) {
+		cout << "*{ Error: Patient or Doctor record not found! }*\n\n";
+		delete app;
+		return;
+	}
 	cout << ">>> NOW CALLING: " << patients.at(pIndex).getName() << "\t";
 	if (app->getPriority() == "1") cout << "[Emergency]\n\n";
 	else cout << "[Normal]\n\n";
-	Sort::selectionByID(doctors);
-	int dIndex = Search::binarySearch(doctors, app->getDoctorId());
 	cout << "Doctor    : Dr. " << doctors.at(dIndex).getName() << "\n";
 	cout << "Diagnosis : " << app->getIllness() << "\n";
 	if (app->getPriority() == "1") cout << "Fee : " << stof(doctors[dIndex].getFee()) + 150 << "\n";
 	else  cout << "Fee : " << doctors.at(dIndex).getFee() << "\n";
 	if (room.isEmpty()) cout << "[OK] Visit added to history. Waiting room is empty.\n\n";
 	else cout << "[OK] Visit added to history. " << room.remain() << " patient still waiting.\n\n";
+	delete app;
 }
